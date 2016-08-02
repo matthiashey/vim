@@ -1,3 +1,5 @@
+set nocompatible        " Must be first line
+
 " Environment {
 " Identify platform {
 silent function! OSX()
@@ -12,7 +14,6 @@ endfunction
 " }
 
 " Basics {
-set nocompatible        " Must be first line
 if !WINDOWS()
     set shell=/bin/sh
 endif
@@ -42,7 +43,6 @@ endif
 
 " General {
 
-syntax on                   " Syntax highlighting
 set background=dark
 "colorscheme molokai
 "colorscheme solarized
@@ -54,7 +54,6 @@ if !has('gui')
     colorscheme molokai
 endif
 
-filetype plugin indent on   " Automatically detect file types.
 set mouse=a                 " Automatically enable mouse usage
 set mousehide               " Hide the mouse cursor while typing
 scriptencoding utf-8
@@ -72,8 +71,6 @@ exe 'ino <script> <C-V>' paste#paste_cmd['i']
 set shortmess+=filmnrxoOtT          " Abbrev. of messages (avoids 'hit enter')
 set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
 set virtualedit=onemore             " Allow for cursor beyond last character
-set history=1000                    " Store a ton of history (default is 20)
-"set spell                           " Spell checking on
 set hidden                          " Allow buffer switching without saving
 set iskeyword-=.                    " '.' is an end of word designator
 set iskeyword-=#                    " '#' is an end of word designator
@@ -137,7 +134,6 @@ else
     "set term=builtin_ansi       " Make arrow and other keys work
 endif
 
-set tabpagemax=15               " Only show 15 tabs
 set showmode                    " Display the current mode
 
 set cursorline                  " Highlight current line
@@ -147,15 +143,12 @@ highlight clear LineNr          " Current line number row will have same backgro
 "highlight clear CursorLineNr    " Remove highlight color from current line number
 
 if has('cmdline_info')
-    set ruler                   " Show the ruler
     set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
     set showcmd                 " Show partial commands in status line and
     " Selected characters/lines in visual mode
 endif
 
 if has('statusline')
-    set laststatus=2
-
     " Broken down into easily includeable segments
     set statusline=%<%f\                     " Filename
     set statusline+=%w%h%m%r                 " Options
@@ -165,23 +158,18 @@ if has('statusline')
     set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 endif
 
-set backspace=indent,eol,start  " Backspace for dummies
 set linespace=0                 " No extra spaces between rows
 set number                      " Line numbers on
 set showmatch                   " Show matching brackets/parenthesis
-set incsearch                   " Find as you type search
 set hlsearch                    " Highlight search terms
 set winminheight=0              " Windows can be 0 line high
 set ignorecase                  " Case insensitive search
 set smartcase                   " Case sensitive when uc present
-set wildmenu                    " Show list instead of just completing
 set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
 set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
 set scrolljump=5                " Lines to scroll when cursor leaves screen
-set scrolloff=3                 " Minimum lines to keep above and below cursor
 set foldenable                  " Auto fold code
 set list
-set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 
 " Clear highlighting on escape in normal mode
 nnoremap <esc> :noh<return><esc>
@@ -190,7 +178,6 @@ nnoremap <esc>^[ <esc>^[
 
 " Formatting {
 " set nowrap                      " Do not wrap long lines
-set autoindent                  " Indent at the same level of the previous line
 set shiftwidth=4                " Use indents of 4 spaces
 set expandtab                   " Tabs are spaces, not tabs
 set tabstop=4                   " An indentation every four columns
@@ -200,8 +187,6 @@ set splitright                  " Puts new vsplit windows to the right of the cu
 set splitbelow                  " Puts new split windows to the bottom of the current
 "set matchpairs+=<:>             " Match, to be used with %
 set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
-set smarttab
-set complete-=i
 set wildmenu
 "set comments=sl:/*,mb:*,elx:*/ " auto format comment blocks
 
