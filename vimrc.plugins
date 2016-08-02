@@ -1,0 +1,136 @@
+" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
+
+" Plugins {
+
+call plug#begin('~/.vim/plugged')
+
+"Theme
+Plug 'tomasr/molokai'
+Plug 'altercation/vim-colors-solarized'
+Plug 'chriskempson/base16-vim'
+Plug 'w0ng/vim-hybrid'
+Plug 'jpo/vim-railscasts-theme'
+
+"Syntax & languages
+Plug 'hail2u/vim-css3-syntax'
+Plug 'scrooloose/syntastic'
+Plug 'vim-scripts/SyntaxComplete'
+Plug 'puppetlabs/puppet-syntax-vim'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'digitaltoad/vim-pug'
+Plug 'leafgarland/typescript-vim'
+Plug 'OrangeT/vim-csharp'
+Plug 'PProvost/vim-ps1'
+Plug 'pangloss/vim-javascript'
+Plug 'helino/vim-json'
+Plug 'skammer/vim-css-color'
+
+"Other
+Plug 'scrooloose/nerdtree'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tacahiroy/ctrlp-funky'
+Plug 'jiangmiao/auto-pairs'
+Plug 'rking/ag.vim'
+Plug 'Chiel92/vim-autoformat'
+" Plug 'scrooloose/nerdcommenter'
+Plug 'bling/vim-bufferline'
+"Plug 'airblade/vim-gitgutter'
+"Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
+Plug 'drmikehenry/vim-fontsize'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-commentary'
+
+call plug#end()
+
+" }
+
+let g:syntastic_javascript_checkers = ['jshint']
+
+
+" NerdTree {
+map <C-n> :NERDTreeToggle<CR>
+
+if isdirectory(expand("~/.vim/plugged/nerdtree"))
+    map <C-e> <plug>NERDTreeTabsToggle<CR>
+    map <leader>e :NERDTreeFind<CR>
+    nmap <leader>nt :NERDTreeFind<CR>
+
+    let NERDTreeShowBookmarks=1
+    let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
+    let NERDTreeChDirMode=0
+    let NERDTreeQuitOnOpen=0
+    let NERDTreeMouseMode=2
+    let NERDTreeShowHidden=1
+    let NERDTreeKeepTreeInNewTab=1
+    let g:nerdtree_tabs_open_on_gui_startup=0
+endif
+
+" close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" }
+
+" ctrlp {
+if isdirectory(expand("~/.vim/plugged/ctrlp.vim/"))
+    let g:ctrlp_cache_dir = '~/.vim/cache/ctrlp'
+    let g:ctrlp_working_path_mode = 'ra'
+    nnoremap <silent> <D-t> :CtrlP<CR>
+    nnoremap <silent> <D-r> :CtrlPMRU<CR>
+
+    let g:ctrlp_custom_ignore = {
+                \ 'dir':  '\.git$\|\.hg$\|\.svn$',
+                \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$'}
+
+    "if executable('ag')
+        let s:ctrlp_fallback = 'ag -i --nocolor --nogroup --hidden -g "" %s'
+"    elseif executable('ack-grep')
+"        let s:ctrlp_fallback = 'ack-grep %s --nocolor -f'
+"    elseif executable('ack')
+"        let s:ctrlp_fallback = 'ack %s --nocolor -f'
+"    elseif (has("win32") || has("win64") || has("win95") || has("win16"))
+"        let s:ctrlp_fallback = 'dir %s /-n /b /s /a-d'
+"    else
+"        let s:ctrlp_fallback = 'find %s -type f'
+    "endif
+
+"    if exists("g:ctrlp_user_command")
+"        unlet g:ctrlp_user_command
+"    endif
+"
+"    let g:ctrlp_user_command = {
+"                \ 'types': {
+"                \ 1: ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others'],
+"                \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+"                \ },
+"                \ 'fallback': s:ctrlp_fallback
+"                \ }
+
+    if isdirectory(expand("~/.vim/plugged/ctrlp-funky/"))
+        " CtrlP extensions
+        let g:ctrlp_extensions = ['funky']
+        "funky
+        nnoremap <Leader>fu :CtrlPFunky<Cr>
+    endif
+endif
+"}
+
+" AutoCloseTag {
+" Make it so AutoCloseTag works for xml and xhtml files as well
+au FileType xhtml,xml ru ftplugin/html/autoclosetag.vim
+nmap <Leader>ac <Plug>ToggleAutoCloseMappings
+" }
+
+" Autoformat {
+noremap <F3> :Autoformat<CR>
+" }
+
+" NERDCommenter {
+"[count]<leader>cc |NERDComComment|
+"Comment out the current line or text selected in visual mode.
+
+"[count]<leader>cn |NERDComNestedComment|
+"Same as <leader>cc but forces nesting.
+
+"[count]<leader>ci |NERDComInvertComment|
+"Toggles the comment state of the selected line(s) individually.
+" }
