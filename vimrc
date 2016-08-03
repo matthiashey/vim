@@ -1,7 +1,6 @@
 set nocompatible        " Must be first line
 
-" Environment {
-" Identify platform {
+" Identify platform
 silent function! OSX()
 return has('macunix')
         endfunction
@@ -11,38 +10,30 @@ return has('macunix')
     silent function! WINDOWS()
     return  (has('win32') || has('win64'))
 endfunction
-" }
 
-" Basics {
+" Basics
 if !WINDOWS()
     set shell=/bin/sh
 endif
-" }
 
-" Windows Compatible {
 " On Windows, also use '.vim' instead of 'vimfiles'; this makes synchronization
 " across (heterogeneous) systems easier.
 if WINDOWS()
     set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
 endif
-" }
 
-" Arrow Key Fix {
+" Arrow Key Fix
 " https://github.com/spf13/spf13-vim/issues/780
 if &term[:4] == "xterm" || &term[:5] == 'screen' || &term[:3] == 'rxvt'
     inoremap <silent> <C-[>OC <RIGHT>
 endif
-" }
-" }
 
-" Use plugins config {
+" Use plugins config
 if filereadable(expand("~/.vim/vimrc.plugins"))
     source ~/.vim/vimrc.plugins
 endif
-" }
 
-" General {
-
+" Set colorscheme and font
 set background=dark
 "colorscheme molokai
 "colorscheme solarized
@@ -54,20 +45,21 @@ if !has('gui')
     colorscheme molokai
 endif
 
+" Mouse settings
 set mouse=a                 " Automatically enable mouse usage
 set mousehide               " Hide the mouse cursor while typing
+
 scriptencoding utf-8
 
 " windows like clipboard
-" yank to and paste from the clipboard without prepending "* to commands
-let &clipboard = has('unnamedplus') ? 'unnamedplus' : 'unnamed'
+" let &clipboard = has('unnamedplus') ? 'unnamedplus' : 'unnamed'
+set clipboard^=unnamed,unnamedplus
 " map c-x and c-v to work as they do in windows, only in insert mode
 vm <c-x> "+x
 vm <c-c> "+y
 cno <c-v> <c-r>+
 exe 'ino <script> <C-V>' paste#paste_cmd['i']
 
-"set autowrite                       " Automatically write a file when leaving a modified buffer
 set shortmess+=filmnrxoOtT          " Abbrev. of messages (avoids 'hit enter')
 set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
 set virtualedit=onemore             " Allow for cursor beyond last character
@@ -80,7 +72,7 @@ set iskeyword-=-                    " '-' is an end of word designator
 " set it to the first line when editing a git commit message
 au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
 
-" Restore cursor to file position in previous editing session {
+" Restore cursor to file position in previous editing session
 function! ResCur()
     if line("'\"") <= line("$")
         silent! normal! g`"
@@ -92,10 +84,8 @@ augroup resCur
     autocmd!
     autocmd BufWinEnter * call ResCur()
 augroup END
-" }"
 
-" Setting up the directories {
-
+" Setting up the directories
 " set backup                  " Backups are nice ...
 if has('persistent_undo')
     set undofile                " So is persistent undo ...
@@ -117,11 +107,8 @@ let g:skipview_files = [
 
 set nobackup
 set nowritebackup
-" }
 
-" }
-
-" Vim UI {
+" Vim UI
 " Maximize GVim on start
 if has("gui_running")
     set lines=999 columns=999
@@ -131,28 +118,23 @@ else
     if &term == 'xterm' || &term == 'screen'
         set t_Co=256            " Enable 256 colors to stop the CSApprox warning and make xterm vim shine
     endif
-    "set term=builtin_ansi       " Make arrow and other keys work
 endif
 
 set showmode                    " Display the current mode
-
 set cursorline                  " Highlight current line
 
 highlight clear SignColumn      " SignColumn should match background
 highlight clear LineNr          " Current line number row will have same background color in relative mode
-"highlight clear CursorLineNr    " Remove highlight color from current line number
 
 if has('cmdline_info')
     set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
-    set showcmd                 " Show partial commands in status line and
-    " Selected characters/lines in visual mode
+    set showcmd                 " Show partial commands in status line and selected characters/lines in visual mode
 endif
 
 if has('statusline')
     " Broken down into easily includeable segments
     set statusline=%<%f\                     " Filename
     set statusline+=%w%h%m%r                 " Options
-    "       set statusline+=%{fugitive#statusline()} " Git Hotness
     set statusline+=\ [%{&ff}/%Y]            " Filetype
     set statusline+=\ [%{getcwd()}]          " Current dir
     set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
@@ -174,10 +156,8 @@ set list
 " Clear highlighting on escape in normal mode
 nnoremap <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
-" }
 
-" Formatting {
-" set nowrap                      " Do not wrap long lines
+" Formatting
 set shiftwidth=4                " Use indents of 4 spaces
 set expandtab                   " Tabs are spaces, not tabs
 set tabstop=4                   " An indentation every four columns
@@ -185,10 +165,8 @@ set softtabstop=4               " Let backspace delete indent
 set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
 set splitright                  " Puts new vsplit windows to the right of the current
 set splitbelow                  " Puts new split windows to the bottom of the current
-"set matchpairs+=<:>             " Match, to be used with %
 set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
 set wildmenu
-"set comments=sl:/*,mb:*,elx:*/ " auto format comment blocks
 
 "autocmd FileType go autocmd BufWritePre <buffer> Fmt
 autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
@@ -202,17 +180,14 @@ autocmd FileType haskell setlocal commentstring=--\ %s
 " Workaround broken colour highlighting in Haskell
 autocmd FileType haskell,rust setlocal nospell
 
-" Extra file types {
+" Extra file types
 autocmd BufNewFile,BufRead *.md setlocal ft=markdown
 autocmd BufNewFile,BufRead *.twig setlocal ft=html
 autocmd BufNewFile,BufRead *.less setlocal ft=less
 autocmd BufNewFile,BufRead *.jade setlocal ft=pug
 autocmd BufNewFile,BufRead *.config setlocal ft=xml
-" }
-" }
-"
-" " Key (re)Mappings {
 
+" Key (re)Mappings
 " The default leader is '\', but many people prefer ',' as it's in a standard location
 let mapleader = ','
 let maplocalleader = '_'
@@ -246,22 +221,8 @@ cmap Tabe tabe
 " Yank from the cursor to the end of the line, to be consistent with C and D.
 nnoremap Y y$
 
-" Code folding options
-nmap <leader>f0 :set foldlevel=0<CR>
-nmap <leader>f1 :set foldlevel=1<CR>
-nmap <leader>f2 :set foldlevel=2<CR>
-nmap <leader>f3 :set foldlevel=3<CR>
-nmap <leader>f4 :set foldlevel=4<CR>
-nmap <leader>f5 :set foldlevel=5<CR>
-nmap <leader>f6 :set foldlevel=6<CR>
-nmap <leader>f7 :set foldlevel=7<CR>
-nmap <leader>f8 :set foldlevel=8<CR>
-nmap <leader>f9 :set foldlevel=9<CR>
-
 " Most prefer to toggle search highlighting rather than clear the current
-" search results. To clear search highlighting rather than toggle it on
-" and off, add the following to your .vimrc.before.local file:
-"   let g:spf13_clear_search_highlight = 1
+" search results.
 if exists('g:spf13_clear_search_highlight')
     nmap <silent> <leader>/ :nohlsearch<CR>
 else
@@ -315,7 +276,7 @@ nnoremap <silent> <leader>q gwip
 map <silent> <F11> :call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")<CR>
 " }
 
-" Swap lines {
+" Swap lines
 function! s:swap_lines(n1, n2)
     let line1 = getline(a:n1)
     let line2 = getline(a:n2)
@@ -345,4 +306,3 @@ endfunction
 
 noremap <silent> <a-up> :call <SID>swap_up()<CR>
 noremap <silent> <a-down> :call <SID>swap_down()<CR>
-" }
