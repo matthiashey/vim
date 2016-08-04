@@ -35,9 +35,7 @@ endif
 
 " Set colorscheme and font
 set background=dark
-"colorscheme molokai
-"colorscheme solarized
-"colorscheme base16-default
+" colorscheme molokai
 colorscheme hybrid
 set guifont=Source\ Code\ Pro\:h10
 

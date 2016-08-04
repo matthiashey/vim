@@ -6,10 +6,7 @@ call plug#begin('~/.vim/plugged')
 
 "Theme
 Plug 'tomasr/molokai'
-Plug 'altercation/vim-colors-solarized'
-Plug 'chriskempson/base16-vim'
 Plug 'w0ng/vim-hybrid'
-Plug 'jpo/vim-railscasts-theme'
 
 "Syntax & languages
 Plug 'hail2u/vim-css3-syntax'
