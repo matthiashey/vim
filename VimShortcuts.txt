@@ -1,0 +1,24 @@
+Vim-fontsize:
+    <Leader><Leader>+    Increment font size
+    <Leader><Leader>-    Decrement font size
+
+Vim-surround:
+    cs<original><new>   Change surrounds
+    ds<original>        Delete surrounds
+    yss<char>           Surround entire line with <char>
+    ysiw<char>          Surround current word with <char>
+    Visual+S+<char>     Surround with <char>
+    <char> chan be tag or character
+
+Vim-repeat:
+    .
+
+Vim-commentary:
+    gcc             Comment a line
+    gc              comment motion
+    <visual>gc      comment visual
+    gcgc            Uncomment set of adjecent commented lines
+
+Vim-autoformat:
+    F3
+
