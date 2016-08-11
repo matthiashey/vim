@@ -1,12 +1,9 @@
-" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
-
-" Plugins {
-
 call plug#begin('~/.vim/plugged')
 
 "Theme
-Plug 'tomasr/molokai'
-Plug 'w0ng/vim-hybrid'
+" Plug 'tomasr/molokai'
+" Plug 'w0ng/vim-hybrid'
+Plug 'flazz/vim-colorschemes'
 
 "Syntax & languages
 Plug 'hail2u/vim-css3-syntax'
@@ -29,7 +26,6 @@ Plug 'tacahiroy/ctrlp-funky'
 Plug 'jiangmiao/auto-pairs'
 Plug 'rking/ag.vim'
 Plug 'Chiel92/vim-autoformat'
-" Plug 'scrooloose/nerdcommenter'
 Plug 'bling/vim-bufferline'
 "Plug 'airblade/vim-gitgutter'
 "Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
@@ -38,14 +34,12 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-sensible'
-call plug#end()
 
-" }
+call plug#end()
 
 let g:syntastic_javascript_checkers = ['jshint']
 
-
-" NerdTree {
+" NERDTree
 map <C-n> :NERDTreeToggle<CR>
 
 if isdirectory(expand("~/.vim/plugged/nerdtree"))
@@ -65,9 +59,8 @@ endif
 
 " close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" }
 
-" ctrlp {
+" ctrlp
 if isdirectory(expand("~/.vim/plugged/ctrlp.vim/"))
     let g:ctrlp_cache_dir = '~/.vim/cache/ctrlp'
     let g:ctrlp_working_path_mode = 'ra'
@@ -109,25 +102,12 @@ if isdirectory(expand("~/.vim/plugged/ctrlp.vim/"))
         nnoremap <Leader>fu :CtrlPFunky<Cr>
     endif
 endif
-"}
 
-" AutoCloseTag {
+" AutoCloseTag
 " Make it so AutoCloseTag works for xml and xhtml files as well
 au FileType xhtml,xml ru ftplugin/html/autoclosetag.vim
 nmap <Leader>ac <Plug>ToggleAutoCloseMappings
-" }
 
-" Autoformat {
+" Autoformat
 noremap <F3> :Autoformat<CR>
-" }
 
-" NERDCommenter {
-"[count]<leader>cc |NERDComComment|
-"Comment out the current line or text selected in visual mode.
-
-"[count]<leader>cn |NERDComNestedComment|
-"Same as <leader>cc but forces nesting.
-
-"[count]<leader>ci |NERDComInvertComment|
-"Toggles the comment state of the selected line(s) individually.
-" }
