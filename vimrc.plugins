@@ -3,7 +3,8 @@ call plug#begin('~/.vim/plugged')
 "Theme
 " Plug 'tomasr/molokai'
 " Plug 'w0ng/vim-hybrid'
-Plug 'flazz/vim-colorschemes'
+" Plug 'flazz/vim-colorschemes'
+Plug 'antlypls/vim-colors-codeschool'
 
 "Syntax & languages
 Plug 'hail2u/vim-css3-syntax'
@@ -22,7 +23,7 @@ Plug 'skammer/vim-css-color'
 "Other
 Plug 'scrooloose/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'tacahiroy/ctrlp-funky'
+"Plug 'tacahiroy/ctrlp-funky'
 Plug 'jiangmiao/auto-pairs'
 Plug 'rking/ag.vim'
 Plug 'Chiel92/vim-autoformat'
@@ -95,12 +96,12 @@ if isdirectory(expand("~/.vim/plugged/ctrlp.vim/"))
 "                \ 'fallback': s:ctrlp_fallback
 "                \ }
 
-    if isdirectory(expand("~/.vim/plugged/ctrlp-funky/"))
-        " CtrlP extensions
-        let g:ctrlp_extensions = ['funky']
-        "funky
-        nnoremap <Leader>fu :CtrlPFunky<Cr>
-    endif
+"     if isdirectory(expand("~/.vim/plugged/ctrlp-funky/"))
+"         " CtrlP extensions
+"         let g:ctrlp_extensions = ['funky']
+"         "funky
+"         nnoremap <Leader>fu :CtrlPFunky<Cr>
+"     endif
 endif
 
 " AutoCloseTag
