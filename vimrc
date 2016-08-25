@@ -38,8 +38,11 @@ set background=dark
 " colorscheme molokai
 " colorscheme hybrid
 colorscheme codeschool
-set guifont=Source\ Code\ Pro\:h10
-
+if WINDOWS()
+    set guifont=Source\ Code\ Pro\:h10
+elseif OSX()
+    set guifont=Source\ Code\ Pro\:h14
+endif
 if !has('gui')
     colorscheme molokai
 endif
