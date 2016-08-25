@@ -37,7 +37,9 @@ endif
 set background=dark
 " colorscheme molokai
 " colorscheme hybrid
-colorscheme codeschool
+" colorscheme codeschool
+colorscheme gruvbox
+
 set guifont=Source\ Code\ Pro\:h10
 
 if !has('gui')
