@@ -308,3 +308,7 @@ endfunction
 
 noremap <silent> <a-up> :call <SID>swap_up()<CR>
 noremap <silent> <a-down> :call <SID>swap_down()<CR>
+
+" Switch to alternate file
+map <C-Tab> :bnext<cr>
+map <C-S-Tab> :bprevious<cr>
