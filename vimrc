@@ -37,12 +37,17 @@ endif
 set background=dark
 " colorscheme molokai
 " colorscheme hybrid
-colorscheme codeschool
+" colorscheme codeschool
+colorscheme gruvbox
+
 if WINDOWS()
     set guifont=Source\ Code\ Pro\:h10
 elseif OSX()
     set guifont=Source\ Code\ Pro\:h14
 endif
+
+set guifont=Source\ Code\ Pro\:h10
+
 if !has('gui')
     colorscheme molokai
 endif
@@ -309,3 +314,7 @@ endfunction
 
 noremap <silent> <a-up> :call <SID>swap_up()<CR>
 noremap <silent> <a-down> :call <SID>swap_down()<CR>
+
+" Switch to alternate file
+map <C-Tab> :bnext<cr>
+map <C-S-Tab> :bprevious<cr>

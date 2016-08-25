@@ -22,3 +22,7 @@ Vim-commentary:
 Vim-autoformat:
     F3
 
+Vim new line:
+    \r
+
+
