@@ -1,5 +1,10 @@
 set nocompatible        " Must be first line
 
+" Key (re)Mappings
+" The default leader is '\', but many people prefer ',' as it's in a standard location
+let mapleader = ","
+let maplocalleader = "_"
+
 " Identify platform
 silent function! OSX()
 return has('macunix')
@@ -195,10 +200,6 @@ autocmd BufNewFile,BufRead *.less setlocal ft=less
 autocmd BufNewFile,BufRead *.jade setlocal ft=pug
 autocmd BufNewFile,BufRead *.config setlocal ft=xml
 
-" Key (re)Mappings
-" The default leader is '\', but many people prefer ',' as it's in a standard location
-let mapleader = ','
-let maplocalleader = '_'
 
 " Easier moving in tabs and windows
 " The lines conflict with the default digraph mapping of <C-K>
