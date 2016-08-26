@@ -51,8 +51,6 @@ elseif OSX()
     set guifont=Source\ Code\ Pro\:h14
 endif
 
-set guifont=Source\ Code\ Pro\:h10
-
 if !has('gui')
     colorscheme molokai
 endif
