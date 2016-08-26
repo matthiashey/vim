@@ -21,7 +21,6 @@ Plug 'OrangeT/vim-csharp'
 " Plug 'helino/vim-json'
 " Plug 'skammer/vim-css-color'
 Plug 'sheerun/vim-polyglot'
-Plug 'nathanaelkane/vim-indent-guides'
 
 "Other
 Plug 'scrooloose/nerdtree'
