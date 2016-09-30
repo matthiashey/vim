@@ -40,19 +40,12 @@ endif
 
 " Set colorscheme and font
 set background=dark
-" colorscheme molokai
-" colorscheme hybrid
-" colorscheme codeschool
 colorscheme gruvbox
 
 if WINDOWS()
     set guifont=Source\ Code\ Pro\:h10
 elseif OSX()
     set guifont=Source\ Code\ Pro\:h14
-endif
-
-if !has('gui')
-    colorscheme molokai
 endif
 
 " Mouse settings
@@ -317,3 +310,8 @@ noremap <silent> <a-down> :call <SID>swap_down()<CR>
 " Switch to alternate file
 map <C-Tab> :bnext<cr>
 map <C-S-Tab> :bprevious<cr>
+
+if (exists('+colorcolumn'))
+    set colorcolumn=120
+    highlight ColorColumn ctermbg=9
+endif

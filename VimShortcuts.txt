@@ -10,6 +10,9 @@ Vim-surround:
     Visual+S+<char>     Surround with <char>
     <char> chan be tag or character
 
+Vim-Easy-Align
+    ga (ex: vipga= visual-select inner paragraph ga (start easy align) align around =)
+
 Vim-repeat:
     .
 
