@@ -24,7 +24,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install', 'for': 'javascript' }
-
+" Plug 'wincent/command-t', { 'do': 'cd ruby/command-t && ruby extconf.rb && make' }
 function! BuildYCM(info)
     " info is a dictionary with 3 fields
     "   " - name:   name of the plugin
@@ -42,7 +42,15 @@ call plug#end()
 
 map <C-y> :YcmCompleter<CR>
 
-let g:syntastic_javascript_checkers = ['jshint']
+" tern
+let g:tern_show_argument_hints='on_hold'
+" and
+let g:tern_map_keys=1
+
+" let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_javascript_checkers = ['eslint']
+" show any linting errors immediately
+let g:syntastic_check_on_open = 1
 
 " incsearch
 map /  <Plug>(incsearch-forward)
