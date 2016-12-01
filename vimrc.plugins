@@ -24,14 +24,16 @@ Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install', 'for': 'javascript' }
-" Plug 'wincent/command-t', { 'do': 'cd ruby/command-t && ruby extconf.rb && make' }
+
 function! BuildYCM(info)
-    " info is a dictionary with 3 fields
-    "   " - name:   name of the plugin
-    "     " - status: 'installed', 'updated', or 'unchanged'
-    "       " - force:  set on PlugInstall! or PlugUpdate!
-    if a:info.status == 'installed' || a:info.force
-        !./install.py --tern-completer
+    if WINDOWS()
+        if a:info.status == 'installed' || a:info.force
+            !./python install.py --tern-completer
+        endif
+    else
+        if a:info.status == 'installed' || a:info.force
+            !./install.py --tern-completer
+        endif
     endif
 endfunction
 
@@ -40,7 +42,7 @@ command! YcmCompleter call plug#load('YouCompleteMe') | call youcompleteme#Enabl
 
 call plug#end()
 
-map <C-y> :YcmCompleter<CR>
+map <C-S-y> :YcmCompleter<CR>
 
 " tern
 let g:tern_show_argument_hints='on_hold'

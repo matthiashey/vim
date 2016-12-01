@@ -315,3 +315,6 @@ if (exists('+colorcolumn'))
     set colorcolumn=120
     highlight ColorColumn ctermbg=9
 endif
+
+autocmd FileType pug setlocal shiftwidth=2 tabstop=2
+autocmd FileType jade setlocal shiftwidth=2 tabstop=2
