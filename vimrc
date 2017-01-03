@@ -7,12 +7,12 @@ let maplocalleader = "_"
 
 " Identify platform
 silent function! OSX()
-return has('macunix')
-        endfunction
-        silent function! LINUX()
-        return has('unix') && !has('macunix') && !has('win32unix')
-    endfunction
-    silent function! WINDOWS()
+    return has('macunix')
+endfunction
+silent function! LINUX()
+    return has('unix') && !has('macunix') && !has('win32unix')
+endfunction
+silent function! WINDOWS()
     return  (has('win32') || has('win64'))
 endfunction
 
@@ -28,7 +28,6 @@ if WINDOWS()
 endif
 
 " Arrow Key Fix
-" https://github.com/spf13/spf13-vim/issues/780
 if &term[:4] == "xterm" || &term[:5] == 'screen' || &term[:3] == 'rxvt'
     inoremap <silent> <C-[>OC <RIGHT>
 endif
@@ -55,7 +54,6 @@ set mousehide               " Hide the mouse cursor while typing
 scriptencoding utf-8
 
 " windows like clipboard
-" let &clipboard = has('unnamedplus') ? 'unnamedplus' : 'unnamed'
 set clipboard^=unnamed,unnamedplus
 " map c-x and c-v to work as they do in windows, only in insert mode
 vm <c-x> "+x
@@ -223,11 +221,7 @@ nnoremap Y y$
 
 " Most prefer to toggle search highlighting rather than clear the current
 " search results.
-if exists('g:spf13_clear_search_highlight')
-    nmap <silent> <leader>/ :nohlsearch<CR>
-else
-    nmap <silent> <leader>/ :set invhlsearch<CR>
-endif
+nmap <silent> <leader>/ :set invhlsearch<CR>
 
 
 " Find merge conflict markers
