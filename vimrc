@@ -188,6 +188,8 @@ autocmd BufNewFile,BufRead *.twig setlocal ft=html
 autocmd BufNewFile,BufRead *.less setlocal ft=less
 autocmd BufNewFile,BufRead *.jade setlocal ft=pug
 autocmd BufNewFile,BufRead *.config setlocal ft=xml
+autocmd BufNewFile,BufRead *.odx setlocal ft=xml
+autocmd BufNewFile,BufRead *.ica setlocal ft=dosini
 
 
 " Easier moving in tabs and windows

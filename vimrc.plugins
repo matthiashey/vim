@@ -2,11 +2,9 @@ call plug#begin('~/.vim/plugged')
 
 "Theme
 Plug 'morhetz/gruvbox'
-" Plug 'sickill/vim-monokai'
 
 "Syntax & languages
 Plug 'scrooloose/syntastic'
-Plug 'OrangeT/vim-csharp'
 Plug 'sheerun/vim-polyglot'
 
 "Other
@@ -131,42 +129,42 @@ if isdirectory(expand("~/.vim/plugged/ctrlp.vim/"))
     nnoremap <silent> <D-r> :CtrlPMRU<CR>
 
 
-    let g:ctrlp_user_command = 'Ag -i --nocolor --nogroup --hidden -g "" %s'
+    " let g:ctrlp_user_command = 'ag -i --nocolor --nogroup --hidden -g "" %s'
     " let g:ctrlp_user_command = 'Ag %s -l --nocolor -g ""'
     " let g:ctrlp_custom_ignore = {
     "             \ 'dir':  '\.git$\|\.hg$\|\.svn$',
     "             \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$'}
 
-    "if executable('ag')
-    " let s:ctrlp_fallback = 'Ag -i --nocolor --nogroup --hidden -g "" %s'
-    "    elseif executable('ack-grep')
-    "        let s:ctrlp_fallback = 'ack-grep %s --nocolor -f'
-    "    elseif executable('ack')
-    "        let s:ctrlp_fallback = 'ack %s --nocolor -f'
-    "    elseif (has("win32") || has("win64") || has("win95") || has("win16"))
-    "        let s:ctrlp_fallback = 'dir %s /-n /b /s /a-d'
-    "    else
-    "        let s:ctrlp_fallback = 'find %s -type f'
-    "endif
+    if executable('ag')
+     let s:ctrlp_fallback = 'ag -i --nocolor --nogroup --hidden -g "" %s'
+        elseif executable('ack-grep')
+            let s:ctrlp_fallback = 'ack-grep %s --nocolor -f'
+        elseif executable('ack')
+            let s:ctrlp_fallback = 'ack %s --nocolor -f'
+        elseif (has("win32") || has("win64") || has("win95") || has("win16"))
+            let s:ctrlp_fallback = 'dir %s /-n /b /s /a-d'
+        else
+            let s:ctrlp_fallback = 'find %s -type f'
+    endif
 
-    "    if exists("g:ctrlp_user_command")
-    "        unlet g:ctrlp_user_command
-    "    endif
-    "
-    "    let g:ctrlp_user_command = {
-    "                \ 'types': {
-    "                \ 1: ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others'],
-    "                \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-    "                \ },
-    "                \ 'fallback': s:ctrlp_fallback
-    "                \ }
+        if exists("g:ctrlp_user_command")
+            unlet g:ctrlp_user_command
+        endif
+    
+        let g:ctrlp_user_command = {
+                    \ 'types': {
+                    \ 1: ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others'],
+                    \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+                    \ },
+                    \ 'fallback': s:ctrlp_fallback
+                    \ }
 
-    "     if isdirectory(expand("~/.vim/plugged/ctrlp-funky/"))
-    "         " CtrlP extensions
-    "         let g:ctrlp_extensions = ['funky']
-    "         "funky
-    "         nnoremap <Leader>fu :CtrlPFunky<Cr>
-    "     endif
+         if isdirectory(expand("~/.vim/plugged/ctrlp-funky/"))
+             " CtrlP extensions
+             let g:ctrlp_extensions = ['funky']
+             "funky
+             nnoremap <Leader>fu :CtrlPFunky<Cr>
+         endif
 endif
 
 " AutoCloseTag
